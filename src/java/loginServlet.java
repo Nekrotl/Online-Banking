@@ -31,20 +31,20 @@ public class loginServlet extends HttpServlet {
          response.setContentType("text/html");
             PrintWriter out = response.getWriter();
             
-            String username = request.getParameter("username");
+            String username = request.getParameter("username");     // username and userpass are fields from login Page
             String password = request.getParameter("userpass");
             
             if(loginValidate.validate(username,password))
             {
-                RequestDispatcher rd = request.getRequestDispatcher("Welcome.jsp");
-                rd.forward(request, response);
+                RequestDispatcher rd = request.getRequestDispatcher("Welcome.jsp");     // redirect to welcome.jsp Page
+                rd.forward(request, response);                                          // doesn't include any message after redirecting to the welcome page
                 
             }
             else
             {
                 out.println("Login Failed");
-                RequestDispatcher rd1 = request.getRequestDispatcher("login.jsp");
-                rd1.include(request, response);
+                RequestDispatcher rd1 = request.getRequestDispatcher("login.jsp");      // redirect to login.jsp Page
+                rd1.include(request, response);                                         // include message Login failed after redirecting
                 
             }
             

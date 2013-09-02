@@ -20,12 +20,12 @@ public class loginValidate {
             status = false;
             
             try{
-                Class.forName("org.apache.derby.jdbc.ClientDriver");
+                Class.forName("org.apache.derby.jdbc.ClientDriver");        //      Load JDBC Driver
                 Connection con;
-                con =  DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
-                PreparedStatement ps = con.prepareStatement("select * from APP.MANAGER where name=? and password=?");
+                con =  DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");     // first parameter is database server address , second and third is username,password respectively
+                PreparedStatement ps = con.prepareStatement("select * from APP.MANAGER where name=? and password=?");   // ? as parameter avoids sql injection attack
                 ps.setString(1,username);
-                ps.setString(2,password);
+                ps.setString(2,password);       // Passing 1st and 2nd parameter to above ps object
                 
                 ResultSet rs = ps.executeQuery();
                 status = rs.next();
